@@ -49,7 +49,7 @@ function draw() {
         // (320, 320) with a size based on the level
         // e.g. level 1 will be a 48x48 rectangle and
         // level 10 will be a 480x480 rectangle
-        rect(200, 200, level * 15, level * 15);
+        rect(200, 200, level * 10, level * 10);
         pop();
     }
 
