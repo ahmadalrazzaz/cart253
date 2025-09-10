@@ -33,6 +33,9 @@ function illuminatiHouse(){
     rect(150, 150, 200, 200) // house
     fill("#3a1907ff")
     rect(225, 270, 50, 80) // door
+    fill("#c2f1e7ff")
+    ellipse(200, 225, 50) // window left
+    ellipse(300, 225, 50) // window right
     pop();
 
 
