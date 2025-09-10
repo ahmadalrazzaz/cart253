@@ -29,7 +29,10 @@ function illuminatiHouse(){
     noStroke();
     fill("#4f261cff");
     rect(300, 50, 30, 100); // Chimney
-
+    fill("#92b787ff")
+    rect(150, 150, 200, 200) // house
+    fill("#3a1907ff")
+    rect(225, 270, 50, 80) // door
     pop();
 
 
