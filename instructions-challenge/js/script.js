@@ -19,10 +19,15 @@ function setup() {
 */
 function draw() {
     clouds();
+    drawBird();
+    drawLandscape();
+    drawGrass();
     illuminatiHouse();
-
 }
 
+/*
+House
+*/
 function illuminatiHouse(){
 
     // House
@@ -120,6 +125,48 @@ ellipse(455, 250, 30, 30);
 
 ellipse(180, 160, 20, 20);
 
+}
 
+/*
+ Grass
+*/
+
+function drawGrass() {
+push();
+fill(10,200,100);
+stroke(10,200,100);
+rect(100,400,4,10);
+rect(120,390,4,10);
+rect(110,380,4,10);
+rect(400,450,4,10);
+rect(430,460,4,10);
+rect(422,455,4,10);
+pop();
+}
+
+function drawLandscape() {
+push();
+stroke(10,250,60);
+fill(10,250,60)
+ellipse(200,420,500,100);
+ellipse(300,420,480,180);
+rect(0,400,1000)
+pop();
+}
+
+function drawBird() {
+let xBird = random()*200+20;
+let yBird = random()*200+10;
+
+push();
+fill("#353131ff")
+ellipse(xBird,yBird,10,20);
+ellipse(xBird,yBird,25,10);
+pop();
+
+push();
+fill("#f78504ef")
+ellipse(xBird+10,yBird-5,20,5);
+pop();
 
 }
