@@ -11,13 +11,13 @@
 */
 function setup() {
     createCanvas(500, 500)
-    background("#D4F0F0")
 }
 
 /**
     Draws house, clouds, grass and birds
 */
 function draw() {
+    background("#D4F0F0")
     clouds();
     drawBird();
     drawLandscape();
