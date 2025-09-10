@@ -24,21 +24,19 @@ function draw() {
 
 function illuminatiHouse(){
 
-    //Base
+    // House
     push();
     noStroke();
     fill("#4f261cff");
     rect(300, 50, 30, 100); // Chimney
     fill("#92b787ff")
-    rect(150, 150, 200, 200) // house
+    rect(150, 150, 200, 200) // house base
     fill("#3a1907ff")
     rect(225, 270, 50, 80) // door
     fill("#c2f1e7ff")
     ellipse(200, 225, 50) // window left
     ellipse(300, 225, 50) // window right
     pop();
-
-
     
     // Roof
     push();
