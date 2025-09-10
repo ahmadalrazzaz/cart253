@@ -24,6 +24,15 @@ function draw() {
 
 function illuminatiHouse(){
 
+    //Base
+    push();
+    noStroke();
+    fill("#4f261cff");
+    rect(300, 50, 30, 100); // Chimney
+
+    pop();
+
+
     
     // Roof
     push();
