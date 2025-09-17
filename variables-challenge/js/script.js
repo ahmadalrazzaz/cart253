@@ -8,6 +8,11 @@ CART 253 - September 17
 
 "use strict";
 
+// Sky Colors
+let skyRed = 160;
+let skyGreen = 180;
+let skyBlue = 200;
+
 // Our friend Mr. Furious
 let mrFurious = {
   // Position and size
@@ -22,7 +27,6 @@ let mrFurious = {
   },
 };
 
-
 /**
  * Create the canvas
  */
@@ -34,7 +38,12 @@ function setup() {
  * Draw (and update) Mr. Furious
  */
 function draw() {
-  background(160, 180, 200);
+  background(skyRed, skyGreen, skyBlue);
+
+  // Slowly changes sky color to black
+  skyRed -= 0.5;
+  skyGreen -= 0.5;
+  skyBlue -= 0.4;
 
   // Draw Mr. Furious as a coloured circle
   push();
