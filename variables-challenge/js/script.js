@@ -27,6 +27,20 @@ let mrFurious = {
   },
 };
 
+// Annoying Bird
+let annoyingBird = {
+  speed: 10,
+  acceleration: 0.05,
+  size: 50,
+
+  // position
+  x: 30,
+  y: 30,
+
+  // direction of travel
+  goingForward: true,
+};
+
 /**
  * Create the canvas
  */
@@ -55,4 +69,29 @@ function draw() {
   // Slowly make Mr. Furious more red
   mrFurious.fill.g -= 0.3;
   mrFurious.fill.b -= 0.3;
+
+  // Creates annoying bird
+  push();
+  noStroke();
+  fill("#ff8d29ff");
+  ellipse(annoyingBird.x, annoyingBird.y, annoyingBird.size, 10);
+  pop();
+
+  // Makes bird fly back and forth annoyingly
+  annoyingBird.speed += annoyingBird.acceleration;
+
+  if (annoyingBird.goingForward == true) {
+    annoyingBird.x += annoyingBird.speed;
+
+    if (annoyingBird.x > 400) {
+      annoyingBird.goingForward = false;
+    }
+  } else {
+    annoyingBird.x -= annoyingBird.speed;
+
+    if (annoyingBird.x < 0) {
+      annoyingBird.goingForward = true;
+    }
+  }
+
 }
