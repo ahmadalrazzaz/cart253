@@ -25,6 +25,7 @@ let mrFurious = {
     g: 225,
     b: 225,
   },
+  rageLevel: 0
 };
 
 // Annoying Bird
@@ -94,4 +95,19 @@ function draw() {
     }
   }
 
+  // Makes Mr. Furious shake with anger
+
+  while (mrFurious.rageLevel < 20){
+    mrFurious.rageLevel += 0.1;
+  }
+
+  mrFurious.x += random(0, mrFurious.rageLevel)
+  mrFurious.x -= random(0, mrFurious.rageLevel)
+  mrFurious.y += random(0, mrFurious.rageLevel)
+  mrFurious.y -= random(0, mrFurious.rageLevel)
+
+  if (mrFurious.x > 220 || mrFurious.y > 220 || mrFurious.y < 180 || mrFurious.x < 180){
+    mrFurious.x = 200;
+    mrFurious.y = 200;
+  }
 }
