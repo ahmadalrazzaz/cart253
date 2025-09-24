@@ -23,11 +23,18 @@ const user = {
   fill: "#000000",
 };
 
+const target = {
+    x: 800,
+    y: 300,
+    size: 150,
+    fill: "#120fd2c7",
+    };
+
 /**
  * Create the canvas
  */
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(1100, 600);
 }
 
 /**
@@ -42,6 +49,7 @@ function draw() {
   // Draw the user and puck
   drawUser();
   drawPuck();
+  drawTarget();
 
   const d = dist(user.x, user.y, puck.x, puck.y);
   const overlap = d < user.size / 2 + puck.size / 2;
@@ -86,6 +94,18 @@ function drawUser() {
   pop();
 }
 
+// Draws the target circle
+function drawTarget() {
+    push();
+    drawingContext.setLineDash([5, 5]);
+    stroke(255, 0, 0);
+    strokeWeight(4);
+    fill(target.fill);
+    ellipse(target.x, target.y, target.size);
+    pop();
+}
+
+
 /**
  * Displays the puck circle
  */
@@ -101,7 +121,7 @@ function movePuck() {
   puck.x += cos(puck.movementAngle) * puck.speed;
   puck.y += sin(puck.movementAngle) * puck.speed;
 
-  puck.speed -= 0.04; // Decrease speed over time
+  puck.speed -= 0.1; // Decrease speed over time
 
   if (puck.x > width || puck.x < 0) {
     puck.movementAngle = PI - puck.movementAngle;
