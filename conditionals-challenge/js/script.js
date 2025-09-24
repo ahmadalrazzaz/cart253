@@ -47,9 +47,6 @@ function draw() {
 
   const overlap = (d < user.size/2 + puck.size/2);
   if (overlap) {
-    // Reset speed on contact
-    puck.speed = 5; 
-
     // Finding angle of contact
     puck.movementAngle = atan2(puck.y - user.y, puck.x - user.x);
     puck.isMoving = true;
@@ -57,6 +54,11 @@ function draw() {
 
     if (puck.isMoving) {
         movePuck();
+        // Reset puck when speed reaches 0
+        if (puck.speed <= 0) {
+            puck.isMoving = false;
+            puck.speed = 5;
+        }
     }
 
 }
@@ -96,6 +98,13 @@ function movePuck() {
     puck.x += cos(puck.movementAngle) * puck.speed;
     puck.y += sin(puck.movementAngle) * puck.speed;
     
-    puck.speed -= 0.07; // Decrease speed over time
+    puck.speed -= 0.03; // Decrease speed over time
+
+    if (puck.x > width || puck.x < 0) {
+        puck.movementAngle = PI - puck.movementAngle;
+    }
+    if (puck.y > height || puck.y < 0) {
+        puck.movementAngle = -puck.movementAngle;
+    }
 
 }
