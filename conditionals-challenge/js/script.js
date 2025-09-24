@@ -24,11 +24,11 @@ const user = {
 };
 
 const target = {
-    x: 800,
-    y: 300,
-    size: 150,
-    fill: "#120fd2c7",
-    };
+  x: 800,
+  y: 300,
+  size: 150,
+  fill: "#120fd2c7",
+};
 
 /**
  * Create the canvas
@@ -52,7 +52,7 @@ function draw() {
   drawTarget();
 
   checkUserPuckOverlap();
-    checkTargetPuckOverlap();
+  checkTarget();
 
   if (puck.isMoving) {
     movePuck();
@@ -85,15 +85,14 @@ function drawUser() {
 
 // Draws the target circle
 function drawTarget() {
-    push();
-    drawingContext.setLineDash([5, 5]);
-    stroke(255, 0, 0);
-    strokeWeight(4);
-    fill(target.fill);
-    ellipse(target.x, target.y, target.size);
-    pop();
+  push();
+  drawingContext.setLineDash([5, 5]);
+  stroke(255, 0, 0);
+  strokeWeight(4);
+  fill(target.fill);
+  ellipse(target.x, target.y, target.size);
+  pop();
 }
-
 
 /**
  * Displays the puck circle
@@ -106,28 +105,27 @@ function drawPuck() {
   pop();
 }
 
-function checkTargetPuckOverlap() {
+function checkTarget() {
   const d = dist(target.x, target.y, puck.x, puck.y);
   const overlap = d < target.size / 2 + puck.size / 2;
 
   if (overlap) {
     target.fill = "#00ff006f";
-  }
-  else {
+  } else {
     target.fill = "#120fd281";
   }
 }
 
 function checkUserPuckOverlap() {
-      const d = dist(user.x, user.y, puck.x, puck.y);
+  const d = dist(user.x, user.y, puck.x, puck.y);
   const overlap = d < user.size / 2 + puck.size / 2;
 
   if (overlap) {
     // Finding angle of contact
     puck.movementAngle = atan2(puck.y - user.y, puck.x - user.x);
 
-    if(puck.isMoving) {
-        puck.speed += 2;
+    if (puck.isMoving) {
+      puck.speed += 2;
     }
 
     puck.isMoving = true;
@@ -147,3 +145,5 @@ function movePuck() {
     puck.movementAngle = -puck.movementAngle;
   }
 }
+
+
