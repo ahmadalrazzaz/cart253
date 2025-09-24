@@ -51,19 +51,8 @@ function draw() {
   drawPuck();
   drawTarget();
 
-  const d = dist(user.x, user.y, puck.x, puck.y);
-  const overlap = d < user.size / 2 + puck.size / 2;
-
-  if (overlap) {
-    // Finding angle of contact
-    puck.movementAngle = atan2(puck.y - user.y, puck.x - user.x);
-
-    if(puck.isMoving) {
-        puck.speed += 2;
-    }
-
-    puck.isMoving = true;
-  }
+  checkUserPuckOverlap();
+    checkTargetPuckOverlap();
 
   if (puck.isMoving) {
     movePuck();
@@ -115,6 +104,34 @@ function drawPuck() {
   fill(puck.fill);
   ellipse(puck.x, puck.y, puck.size);
   pop();
+}
+
+function checkTargetPuckOverlap() {
+  const d = dist(target.x, target.y, puck.x, puck.y);
+  const overlap = d < target.size / 2 + puck.size / 2;
+
+  if (overlap) {
+    target.fill = "#00ff006f";
+  }
+  else {
+    target.fill = "#120fd281";
+  }
+}
+
+function checkUserPuckOverlap() {
+      const d = dist(user.x, user.y, puck.x, puck.y);
+  const overlap = d < user.size / 2 + puck.size / 2;
+
+  if (overlap) {
+    // Finding angle of contact
+    puck.movementAngle = atan2(puck.y - user.y, puck.x - user.x);
+
+    if(puck.isMoving) {
+        puck.speed += 2;
+    }
+
+    puck.isMoving = true;
+  }
 }
 
 function movePuck() {
