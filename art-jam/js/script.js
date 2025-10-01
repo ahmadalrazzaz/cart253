@@ -10,7 +10,7 @@
  * create the canvas
 */
 function setup() {
-    createCanvas(700, 700);
+    createCanvas(600, 600);
 }
 
 
@@ -30,17 +30,18 @@ function drawFace() {
     
     // Draw neck
     fill("#c4a57cff");
-    rect(280, 550, 140, 150);
+    rect(280, 540, 140, 150);
 
     // Draw face shape
     fill("#ffdbac");
-    ellipse(350, 350, 350, 470);
+    ellipse(350, 330, 350, 470);
 
 
     // Draw features
     drawEyes();
     drawNose();
     drawMouth();
+    drawHair();
 }
 
 function drawEyes() {
@@ -78,5 +79,30 @@ function drawEars() {
     fill("#ffdbac");
     ellipse(180, 370, 50, 80);
     ellipse(520, 370, 50, 80);
+
+}
+
+function drawHair() {
+    fill("#49230eff");
+    ellipse(490, 185, 80);
+    ellipse(470, 140, 80);
+    ellipse(210, 185, 80);
+    ellipse(450, 130, 100);
+    ellipse(360, 120, 80);
+    ellipse(490, 235, 80);
+    ellipse(470, 200, 80);
+    ellipse(210, 235, 80);
+    ellipse(230, 200, 80);
+    ellipse(350, 130, 100);
+    ellipse(300, 110, 100);
+    ellipse(230, 150, 80);
+    ellipse(250, 170, 100);
+    ellipse(300, 150, 100);
+    ellipse(400, 150, 100);
+    ellipse(250, 120, 100);
+    ellipse(450, 170, 100);
+    ellipse(360, 150, 80);
+    ellipse(400, 100, 100);
+    ellipse(350, 120, 100);
 
 }
