@@ -25,6 +25,8 @@ function draw() {
 
 // Draw a face using functions for each feature
 function drawFace() {
+
+    drawEars();
     
     // Draw neck
     fill("#c4a57cff");
@@ -46,13 +48,13 @@ function drawEyes() {
     fill("#ffffff");
     ellipse(270, 300, 80, 50);
     fill("#2e1100ff");
-    ellipse(270, 300, 30, 30);
+    ellipse(270, 300, 30);
 
     // Right eye
     fill("#ffffff");
     ellipse(430, 300, 80, 50);
     fill("#2e1100ff");
-    ellipse(430, 300, 30, 30);
+    ellipse(430, 300, 30);
 }
 
 function drawNose() {
@@ -69,5 +71,12 @@ function drawMouth() {
 
     // First time using arc() function
     arc(350, 450, 150, 100, 0, PI);
+
+}
+
+function drawEars() {
+    fill("#ffdbac");
+    ellipse(180, 370, 50, 80);
+    ellipse(520, 370, 50, 80);
 
 }
