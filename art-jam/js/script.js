@@ -6,11 +6,25 @@
 
 "use strict";
 
+let eyes = {
+    red: 255,
+    green: 255,
+    blue: 255,
+    leftX: 270,
+    leftY: 300,
+    rightX: 430,
+    rightY: 300,
+    width: 80,
+    height: 50,
+    withinLeftEye: false,
+    withinRightEye: false
+}
+
 /**
  * create the canvas
 */
 function setup() {
-    createCanvas(600, 600);
+    createCanvas(700, 600);
 }
 
 
@@ -21,7 +35,7 @@ function draw() {
     background("#460000ff");
 
     drawFace();
-}
+    }
 
 // Draw a face using functions for each feature
 function drawFace() {
@@ -46,17 +60,34 @@ function drawFace() {
 }
 
 function drawEyes() {
-    // Left eye
-    fill("#ffffff");
-    ellipse(270, 300, 80, 50);
-    fill("#2e1100ff");
-    ellipse(270, 300, 30);
+    fill(eyes.red, eyes.green, eyes.blue);
+    ellipse(eyes.leftX, eyes.leftY, eyes.width, eyes.height);    
+    ellipse(eyes.rightX, eyes.rightY, eyes.width, eyes.height);
 
-    // Right eye
-    fill("#ffffff");
-    ellipse(430, 300, 80, 50);
+    // Move eyes based on mouse position
+    let eyeOffsetX = map(mouseX, 0, width, -15, 15);
+    let eyeOffsetY = map(mouseY, 0, height, -8, 8);
+
+    // Constrain the offsets to keep pupils within the eyes
+    eyeOffsetX = constrain(eyeOffsetX, -15, 15);
+    eyeOffsetY = constrain(eyeOffsetY, -8, 8);
+
+    // Redraw pupils with offsets
     fill("#2e1100ff");
-    ellipse(430, 300, 30);
+    ellipse(270 + eyeOffsetX, 300 + eyeOffsetY, 30); // Left pupil
+    ellipse(430 + eyeOffsetX, 300 + eyeOffsetY, 30); // Right pupil
+
+    if (mouseIsPressed) {
+        eyes.blue -= 0.5;
+        eyes.green -= 0.5;
+
+        if (eyes.blue < 0) {
+            eyes.blue = 0;
+        }
+        if (eyes.green < 0) {
+            eyes.green = 0;
+        }
+    }
 }
 
 function drawNose() {
