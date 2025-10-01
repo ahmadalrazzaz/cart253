@@ -41,6 +41,7 @@ function drawFace() {
     drawEyes();
     drawNose();
     drawMouth();
+    drawEyebrows();
     drawHair();
 }
 
@@ -73,6 +74,10 @@ function drawMouth() {
     // First time using arc() function
     arc(350, 450, 150, 100, 0, PI);
 
+    // Draw teeth
+    fill("#ffffff");
+    rect(290, 450, 120, 20, 0, 0, 10, 10);
+
 }
 
 function drawEars() {
@@ -104,5 +109,10 @@ function drawHair() {
     ellipse(360, 150, 80);
     ellipse(400, 100, 100);
     ellipse(350, 120, 100);
+}
 
+function drawEyebrows() {
+    fill("#321709ff");
+    arc(270, 255, 100, 40, PI, 0);
+    arc(430, 255, 100, 40, PI, 0);
 }
