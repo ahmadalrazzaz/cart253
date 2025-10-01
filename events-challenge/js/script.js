@@ -77,6 +77,17 @@ function checkForInput() {
   ) {
     lose();
     }
+
+  document.addEventListener("visibilitychange", () => {
+    lose();
+  });
+
+  if (!document.hasFocus()) {
+    lose();
+  }
+
+  addEventListener("online", (event) => { lose(); })
+  addEventListener("offline", (event) => { lose(); })
 }
 
 function lose() {
