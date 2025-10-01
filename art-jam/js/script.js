@@ -42,10 +42,25 @@ function drawFace() {
 }
 
 function drawEyes() {
+    // Left eye
+    fill("#ffffff");
+    ellipse(270, 300, 80, 50);
+    fill("#2e1100ff");
+    ellipse(270, 300, 30, 30);
 
+    // Right eye
+    fill("#ffffff");
+    ellipse(430, 300, 80, 50);
+    fill("#2e1100ff");
+    ellipse(430, 300, 30, 30);
 }
 
 function drawNose() {
+    fill("#ffb380");
+    //triangle(350, 320, 330, 400, 370, 400);
+
+    // Never used quad before, so trying it out
+    quad(340, 320, 330, 400, 370, 400, 360, 320);
 
 }
 
