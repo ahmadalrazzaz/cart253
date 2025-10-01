@@ -1,6 +1,6 @@
 /**
  * The Only Move Is Not To Play
- * Ahmad AlRazzaz
+ * Ahmad AlRazzaz and Edmond Peng
  *
  * A game where your score increases so long as you do nothing.
  */
