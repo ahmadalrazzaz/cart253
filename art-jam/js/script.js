@@ -65,5 +65,9 @@ function drawNose() {
 }
 
 function drawMouth() {
+    fill("#ff6666");
+
+    // First time using arc() function
+    arc(350, 450, 150, 100, 0, PI);
 
 }
