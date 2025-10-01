@@ -15,7 +15,7 @@ function setup() {
 
 
 /**
- * OOPS I DIDN'T DESCRIBE WHAT MY DRAW DOES!
+ * Draws my face
 */
 function draw() {
     background("#460000ff");
@@ -25,9 +25,15 @@ function draw() {
 
 // Draw a face using functions for each feature
 function drawFace() {
+    
+    // Draw neck
+    fill("#c4a57cff");
+    rect(280, 550, 140, 150);
+
     // Draw face shape
     fill("#ffdbac");
-    ellipse(350, 350, 400, 500);
+    ellipse(350, 350, 350, 470);
+
 
     // Draw features
     drawEyes();
@@ -40,7 +46,9 @@ function drawEyes() {
 }
 
 function drawNose() {
+
 }
 
 function drawMouth() {
+
 }
