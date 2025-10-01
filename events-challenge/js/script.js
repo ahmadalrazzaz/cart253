@@ -13,13 +13,17 @@ let score = 0;
 // Is the game over?
 let gameOver = false;
 
+let startingmouseX;
+let startingmouseY;
+
 /**
  * Create the canvas
  */
 function setup() {
   createCanvas(400, 400);
 
-
+  startingmouseX = mouseX;
+  startingmouseY = mouseY;
 }
 
 /**
@@ -65,9 +69,14 @@ function displayScore() {
 }
 
 function checkForInput() {
-  if (keyIsPressed) {
+  if (
+    keyIsPressed ||
+    mouseIsPressed ||
+    mouseX !== startingmouseX ||
+    mouseY !== startingmouseY
+  ) {
     lose();
-  }
+    }
 }
 
 function lose() {
