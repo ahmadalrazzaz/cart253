@@ -7,24 +7,39 @@
 "use strict";
 
 let eyes = {
+    width: 80,
+    height: 50,
+
     red: 255,
     green: 255,
     blue: 255,
+
     leftX: 270,
     leftY: 300,
     rightX: 430,
-    rightY: 300,
-    width: 80,
-    height: 50,
-    withinLeftEye: false,
-    withinRightEye: false
+    rightY: 300
+}
+
+let sky={
+    red:135,
+    green:206,
+    blue:235,
+
+    nightTime: false,
+
+    dayRed: 135,
+    dayGreen: 206,
+    dayBlue: 235,
+    nightRed: 6, 
+    nightGreen: 6, 
+    nightBlue: 41
 }
 
 /**
  * create the canvas
 */
 function setup() {
-    createCanvas(700, 600);
+    createCanvas(1000, 600);
 }
 
 
@@ -32,7 +47,8 @@ function setup() {
  * Draws my face
 */
 function draw() {
-    background("#460000ff");
+    background(sky.red, sky.green, sky.blue);
+    transitionDayAndNight();
 
     drawFace();
     }
@@ -146,4 +162,28 @@ function drawEyebrows() {
     fill("#321709ff");
     arc(270, 255, 100, 40, PI, 0);
     arc(430, 255, 100, 40, PI, 0);
+}
+
+function transitionDayAndNight() {
+    sky.red = constrain(sky.red, sky.nightRed, sky.dayRed);
+    sky.green = constrain(sky.green, sky.nightGreen, sky.dayGreen);
+    sky.blue = constrain(sky.blue, sky.nightBlue, sky.dayBlue);
+
+    if (sky.nightTime) {
+        sky.red -= 0.5;
+        sky.green -= 0.5;
+        sky.blue -= 0.5;
+
+        if (sky.red <= sky.nightRed && sky.green <= sky.nightGreen && sky.blue <= sky.nightBlue) {
+            sky.nightTime = false;
+        }
+    } else {
+        sky.red += 0.3;
+        sky.green += 0.3;
+        sky.blue += 0.7;
+
+        if (sky.red >= sky.dayRed && sky.green >= sky.dayGreen && sky.blue >= sky.dayBlue) {
+            sky.nightTime = true;
+        }
+    }
 }
