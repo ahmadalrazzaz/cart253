@@ -58,6 +58,8 @@ function draw() {
     drawSunAndMoon();
 
     drawFace();
+
+    drawHand();
     }
 
 // Draw a face using functions for each feature
@@ -218,4 +220,16 @@ function drawSunAndMoon() {
         fill(255, 223, 0);
         ellipse(850, 100, 120);
     }
+}
+
+function drawHand() {
+    fill("#edcca0ff");
+    ellipse(mouseX, mouseY, 170, 190);
+    rect(mouseX - 40, mouseY + 80, 80, height);
+    
+    rect(mouseX - 85, mouseY - 110, 30, 130, 20);
+    rect(mouseX - 50, mouseY - 160, 30, 100, 20);
+    rect(mouseX - 15, mouseY - 180, 30, 120, 20);
+    rect(mouseX + 20, mouseY - 160, 30, 100, 20);
+    rect(mouseX + 55, mouseY - 130, 30, 130, 20);
 }
