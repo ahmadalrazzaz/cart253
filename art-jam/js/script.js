@@ -9,6 +9,7 @@
 let eyes = {
     width: 80,
     height: 50,
+    pupilSize: 30,
 
     red: 255,
     green: 255,
@@ -85,13 +86,13 @@ function drawEyes() {
     let eyeOffsetY = map(mouseY, 0, height, -8, 8);
 
     // Constrain the offsets to keep pupils within the eyes
-    eyeOffsetX = constrain(eyeOffsetX, -15, 15);
-    eyeOffsetY = constrain(eyeOffsetY, -8, 8);
+    eyeOffsetX = constrain(eyeOffsetX, eyes.pupilSize/-2, eyes.pupilSize/2);
+    eyeOffsetY = constrain(eyeOffsetY, eyes.pupilSize/-4, eyes.pupilSize/4);
 
     // Redraw pupils with offsets
     fill("#2e1100ff");
-    ellipse(270 + eyeOffsetX, 300 + eyeOffsetY, 30); // Left pupil
-    ellipse(430 + eyeOffsetX, 300 + eyeOffsetY, 30); // Right pupil
+    ellipse(270 + eyeOffsetX, 300 + eyeOffsetY, eyes.pupilSize); // Left pupil
+    ellipse(430 + eyeOffsetX, 300 + eyeOffsetY, eyes.pupilSize); // Right pupil
 
     if (mouseIsPressed) {
         eyes.blue -= 0.5;
@@ -174,6 +175,12 @@ function transitionDayAndNight() {
         sky.green -= 0.5;
         sky.blue -= 0.5;
 
+        eyes.height = constrain(eyes.height, 0, 50);
+        eyes.pupilSize = constrain(eyes.pupilSize, 0, 30);
+
+        eyes.height -= 0.1;
+        eyes.pupilSize -= 0.05;
+
         if (sky.red <= sky.nightRed && sky.green <= sky.nightGreen && sky.blue <= sky.nightBlue) {
             sky.nightTime = false;
         }
@@ -181,6 +188,12 @@ function transitionDayAndNight() {
         sky.red += 0.3;
         sky.green += 0.3;
         sky.blue += 0.7;
+
+        eyes.height = constrain(eyes.height, 0, 50);
+        eyes.pupilSize = constrain(eyes.pupilSize, 0, 30);
+
+        eyes.height += 0.1;
+        eyes.pupilSize += 0.05;
 
         if (sky.red >= sky.dayRed && sky.green >= sky.dayGreen && sky.blue >= sky.dayBlue) {
             sky.nightTime = true;
