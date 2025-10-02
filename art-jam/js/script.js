@@ -33,7 +33,8 @@ let sky={
     dayBlue: 235,
     nightRed: 6, 
     nightGreen: 6, 
-    nightBlue: 41
+    nightBlue: 41,
+
 }
 
 /**
@@ -41,6 +42,8 @@ let sky={
 */
 function setup() {
     createCanvas(1000, 600);
+    
+
 }
 
 
@@ -49,7 +52,10 @@ function setup() {
 */
 function draw() {
     background(sky.red, sky.green, sky.blue);
+    noStroke();
+
     transitionDayAndNight();
+    drawSunAndMoon();
 
     drawFace();
     }
@@ -129,7 +135,7 @@ function drawMouth() {
 }
 
 function drawEars() {
-    fill("#ffdbac");
+    fill("#dbb88bff");
     ellipse(180, 370, 50, 80);
     ellipse(520, 370, 50, 80);
 
@@ -173,30 +179,43 @@ function transitionDayAndNight() {
     if (sky.nightTime) {
         sky.red -= 0.5;
         sky.green -= 0.5;
-        sky.blue -= 0.5;
-
+        sky.blue -= 0.3;
+        
         eyes.height = constrain(eyes.height, 0, 50);
         eyes.pupilSize = constrain(eyes.pupilSize, 0, 30);
 
         eyes.height -= 0.1;
-        eyes.pupilSize -= 0.05;
+        eyes.pupilSize -= 0.06;
 
         if (sky.red <= sky.nightRed && sky.green <= sky.nightGreen && sky.blue <= sky.nightBlue) {
             sky.nightTime = false;
         }
     } else {
-        sky.red += 0.3;
-        sky.green += 0.3;
-        sky.blue += 0.7;
+        sky.red += 0.2;
+        sky.green += 0.2;
+        sky.blue += 0.6;
 
         eyes.height = constrain(eyes.height, 0, 50);
         eyes.pupilSize = constrain(eyes.pupilSize, 0, 30);
 
         eyes.height += 0.1;
-        eyes.pupilSize += 0.05;
+        eyes.pupilSize += 0.06;
 
         if (sky.red >= sky.dayRed && sky.green >= sky.dayGreen && sky.blue >= sky.dayBlue) {
             sky.nightTime = true;
         }
+    }
+}
+
+function drawSunAndMoon() {
+
+    if (sky.nightTime) {
+        fill(255, 255, 224);
+        ellipse(850, 100, 120);
+        fill(sky.red, sky.green, sky.blue);
+        ellipse(830, 100, 120);
+    } else {
+        fill(255, 223, 0);
+        ellipse(850, 100, 120);
     }
 }
