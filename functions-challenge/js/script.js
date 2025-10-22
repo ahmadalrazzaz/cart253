@@ -53,11 +53,11 @@ function draw() {
  */
 function movePaddle(paddle) {
     if (keyIsDown(LEFT_ARROW)) {
-        paddle.x -= 5;
+        paddle.x -= 10;
     }
 
     if (keyIsDown(RIGHT_ARROW)) {
-        paddle.x += 5;
+        paddle.x += 10;
     }
 
     // Constrain the paddle to the canvas
