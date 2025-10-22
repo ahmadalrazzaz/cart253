@@ -37,7 +37,7 @@ function setup() {
  * Move and display the ball and paddle
 */
 function draw() {
-    background("#87ceeb");
+    background("#000000ff");
 
     movePaddle(paddle);
     moveBall(ball);
@@ -53,11 +53,11 @@ function draw() {
  */
 function movePaddle(paddle) {
     if (keyIsDown(LEFT_ARROW)) {
-        paddle.x -= 10;
+        paddle.x -= 4;
     }
 
     if (keyIsDown(RIGHT_ARROW)) {
-        paddle.x += 10;
+        paddle.x += 4;
     }
 
     // Constrain the paddle to the canvas
@@ -70,6 +70,7 @@ function movePaddle(paddle) {
  */
 function moveBall(ball) {
     ball.y += ball.velocity.y;
+    ball.x += ball.velocity.x;
 }
 
 /**
@@ -78,12 +79,16 @@ function moveBall(ball) {
 function handleBounce(ball, paddle) {
     if (checkOverlap(ball, paddle)) {
         ball.velocity.y *= -1;
+        ball.velocity.x = (ball.x - paddle.x) * 0.1;
     }
 
     if (ball.y < ball.height/2) {
         ball.velocity.y *= -1;
     }
 
+    if (ball.x < ball.width/2 || ball.x > width - ball.width/2) {
+        ball.velocity.x *= -1;
+    }
 }
 
 /**
@@ -93,7 +98,7 @@ function drawPaddle(paddle) {
     push();
     rectMode(CENTER);
     noStroke();
-    fill("pink");
+    fill("white");
     rect(paddle.x, paddle.y, paddle.width, paddle.height);
     pop();
 }
@@ -105,7 +110,7 @@ function drawBall(ball) {
     push();
     rectMode(CENTER);
     noStroke();
-    fill("pink");
+    fill("white");
     rect(ball.x, ball.y, ball.width, ball.height);
     pop();
 }
