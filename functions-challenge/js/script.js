@@ -79,7 +79,9 @@ function moveBall(ball) {
 function handleBounce(ball, paddle) {
     if (checkOverlap(ball, paddle)) {
         ball.velocity.y *= -1;
-        ball.velocity.x = (ball.x - paddle.x) * 0.1;
+        ball.velocity.x += (ball.x - paddle.x) * 0.1;
+
+        ball.velocity.x = constrain(ball.velocity.x, -5, 5);
     }
 
     if (ball.y < ball.height/2) {
