@@ -32,7 +32,7 @@ const ball2 = {
     width: 10,
     height: 10,
     velocity: {
-        x: 2,
+        x: 1,
         y: 1
     }
 };
@@ -44,7 +44,6 @@ const paddle = {
     width: 80,
     height: 10
 };
-
 
 /**
  * Create the canvas
@@ -141,16 +140,15 @@ function displayScore() {
  */
 function movePaddle(paddle) {
     if (keyIsDown(LEFT_ARROW)) {
-        paddle.x -= 4;
+        paddle.x -= 8;
     }
 
     if (keyIsDown(RIGHT_ARROW)) {
-        paddle.x += 4;
+        paddle.x += 8;
     }
 
     // Constrain the paddle to the canvas
     paddle.x = constrain(paddle.x, paddle.width / 2, width - paddle.width / 2);
-
 }
 
 /**
@@ -189,6 +187,9 @@ function handleBounce(ball, paddle) {
         textAlign(CENTER, CENTER);
         fill("red");
         text("Game Over!", width/2, height/2);
+        fill("white");
+        textSize(20);
+        text("Final Score: " + score, width/2, height/2 + 50);
         noLoop();
     }
 }
