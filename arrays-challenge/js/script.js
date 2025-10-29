@@ -7,6 +7,8 @@
 
 let ball1 = undefined; // Will create it with createBall()
 
+let balls = []; 
+
 /**
  * Create the canvas and the ball
  */
@@ -43,10 +45,13 @@ function createBall() {
  */
 function draw() {
   background("#87ceeb");
+
+  for (const ball of balls) {
+    moveBall(ball);
+    bounceBall(ball);
+    drawBall(ball);
+  }
   
-  moveBall(ball1);
-  bounceBall(ball1);
-  drawBall(ball1);
 }
 
 /**
