@@ -16,18 +16,18 @@ function setup() {
   // Create the canvas
   createCanvas(400, 400);
   // Create the ball
-  ball1 = createBall();
+  ball1 = createBall(200,200);
 }
 
 /**
  * Creates a random ball
  */
-function createBall() {
+function createBall(initX, initY) {
   // Create a ball object with appropriate properties
   const newBall = {
     // Position and dimensions
-    x: 200,
-    y: 200,
+    x: initX,
+    y: initY,
     size: 20,
     // Colour
     fill: "#000000",
@@ -90,4 +90,10 @@ function drawBall(ball) {
   fill(ball.fill);
   ellipse(ball.x, ball.y, ball.size);
   pop();
+}
+
+function mousePressed(){
+    balls.push(createBall(mouseX, mouseY));
+
+    console.log(pmouseX - mouseX, pmouseY - mouseY);
 }
