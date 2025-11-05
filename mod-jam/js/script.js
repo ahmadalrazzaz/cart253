@@ -164,7 +164,7 @@ function updateTongue() {
 
   // Check collision with fly
   const d = dist(mx, tipY, fly.x, fly.y);
-  if (d < fly.size * 0.45) {
+  if (d < fly.size * 0.6) {
     score += 10;
     tongue.isRetracting = true;
     resetFly();
