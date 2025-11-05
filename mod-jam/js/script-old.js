@@ -63,44 +63,6 @@ function draw() {
     checkTongueFlyOverlap();
 }
 
-/**
- * Moves the fly according to its speed
- * Resets the fly if it gets all the way to the right
- */
-function moveFly() {
-    // Move the fly
-    fly.x += fly.speed;
-    // Handle the fly going off the canvas
-    if (fly.x > width) {
-        resetFly();
-    }
-}
-
-/**
- * Draws the fly as a black circle
- */
-function drawFly() {
-    push();
-    noStroke();
-    fill("#000000");
-    ellipse(fly.x, fly.y, fly.size);
-    pop();
-}
-
-/**
- * Resets the fly to the left with a random y
- */
-function resetFly() {
-    fly.x = 0;
-    fly.y = random(0, 300);
-}
-
-/**
- * Moves the frog to the mouse position on x
- */
-function moveFrog() {
-    frog.body.x = mouseX;
-}
 
 /**
  * Handles moving the tongue based on its state
@@ -146,13 +108,6 @@ function drawFrog() {
     stroke("#ff0000");
     strokeWeight(frog.tongue.size);
     line(frog.tongue.x, frog.tongue.y, frog.body.x, frog.body.y);
-    pop();
-
-    // Draw the frog's body
-    push();
-    fill("#00ff00");
-    noStroke();
-    ellipse(frog.body.x, frog.body.y, frog.body.size);
     pop();
 }
 
