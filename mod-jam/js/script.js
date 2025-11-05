@@ -43,9 +43,9 @@ let lives = 5;
 
 // ===== Preload =====
 function preload() {
-  frogImage = loadImage("js/assets/images/frog.png");
-  flyImage = loadImage("js/assets/images/fly.png");
-  backgroundImage = loadImage("js/assets/images/swamp-bg.png");
+  frogImage = loadImage("assets/images/frog.png");
+  flyImage = loadImage("assets/images/fly.png");
+  backgroundImage = loadImage("assets/images/swamp-bg.png");
 }
 
 // ===== Setup =====
