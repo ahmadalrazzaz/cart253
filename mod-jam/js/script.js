@@ -43,9 +43,9 @@ let lives = 5;
 
 // ===== Preload =====
 function preload() {
-  frogImage = loadImage("mod-jam/js/assets/images/frog.png");
-  flyImage = loadImage("mod-jam/js/assets/images/fly.png");
-  backgroundImage = loadImage("mod-jam/js/assets/images/swamp-bg.png");
+  frogImage = loadImage("js/assets/images/frog.png");
+  flyImage = loadImage("js/assets/images/fly.png");
+  backgroundImage = loadImage("js/assets/images/swamp-bg.png");
 }
 
 // ===== Setup =====
