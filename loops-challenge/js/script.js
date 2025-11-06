@@ -12,6 +12,8 @@
  */
 function setup() {
     createCanvas(500, 500);
+
+    colorMode(HSB);
 }
 
 /**
@@ -19,38 +21,24 @@ function setup() {
  * gradually lightening colour
  */
 function draw() {
-    background("pink");
+
+    let hueController = map(mouseX, 0, width, 0, 360); // Controls hue based on mouseX
+    let saturationController = map(mouseY, 0, height, 0, 100); // Controls saturation based on mouseY
+
+    let fillColor = color(hueController, saturationController, 100);
+    background(fillColor);
     
-    stroke(0);
-    line(0, 0, 0, height);
-    
-    stroke(25);
-    line(50, 0, 50, height);
-    
-    stroke(50);
-    line(100, 0, 100, height);
-    
-    stroke(75);
-    line(150, 0, 150, height);
-    
-    stroke(100);
-    line(200, 0, 200, height);
-    
-    stroke(125);
-    line(250, 0, 250, height);
-    
-    stroke(150);
-    line(300, 0, 300, height);
-    
-    stroke(175);
-    line(350, 0, 350, height);
-    
-    stroke(200);
-    line(400, 0, 400, height);
-    
-    stroke(225);
-    line(450, 0, 450, height);
-    
-    stroke(250);
-    line(500, 0, 500, height);
+    let strokeVar = 0;
+
+    while (strokeVar <= 250) {
+        stroke(strokeVar);
+        strokeWeight(strokeVar/25);
+
+        line(strokeVar * 2, 0, strokeVar * 2, height);
+
+        line(0, 250, (width/2)+strokeVar, strokeVar*2);
+        
+        strokeVar += 25;
+    }
+
 }
