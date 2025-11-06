@@ -8,6 +8,7 @@
 
 // ===== Assets =====
 let frogImage, flyImage, backgroundImage;
+let backgroundMusic, swampSound, damageSound, flyBuzzSound, tongueSound, gameOverSound;  
 
 // ===== Game State =====
 let gameState = "menu";
@@ -43,16 +44,29 @@ let lives = 5;
 
 // ===== Preload =====
 function preload() {
+  // Load images
   frogImage = loadImage("js/assets/images/frog.png");
   flyImage = loadImage("js/assets/images/fly.png");
   backgroundImage = loadImage("js/assets/images/swamp-bg.png");
+
+  // Load sounds
+  backgroundMusic = loadSound("js/assets/sounds/background-music.mp3");
+  swampSound = loadSound("js/assets/sounds/swamp-noises.mp3");
+  damageSound = loadSound("js/assets/sounds/damage.mp3");
+  flyBuzzSound = loadSound("js/assets/sounds/fly-buzzing.mp3");
+  tongueSound = loadSound("js/assets/sounds/frog-tongue.mp3");
+  gameOverSound = loadSound("js/assets/sounds/game-over.mp3");
 }
 
 // ===== Setup =====
 function setup() {
   createCanvas(1200, 750);
+
   frog.y = height - 300;
   resetFly();
+
+  backgroundMusic.loop();
+  backgroundMusic.setVolume(0.5);
 }
 
 // ===== Draw =====
@@ -67,6 +81,12 @@ function draw() {
   }
 
   if (gameState === "playing") {
+
+    if (!swampSound.isPlaying()) {
+      swampSound.loop();
+      swampSound.setVolume(0.3);
+    }
+
     moveFly();
     drawFly();
 
@@ -78,6 +98,12 @@ function draw() {
     moveFrog();
     drawFrog();
     drawHUD();
+
+    // Damage overlay
+    push();
+    fill(255, 0, 0, map(5 - lives, 0, 5, 0, 60)); // More opaque with less lives
+    rect(0, 0, width, height);
+    pop();
 
     if (lives <= 0) {
       gameState = "gameover";
@@ -100,17 +126,25 @@ function drawFly() {
 }
 
 function moveFly() {
+  if (!flyBuzzSound.isPlaying()) {
+    flyBuzzSound.loop();
+    flyBuzzSound.setVolume(0.2);
+  }
+
   fly.x += fly.speed;
   fly.y += random(-4, 4);
   fly.y = constrain(fly.y, 30, height * 0.4);
 
   if ((fly.x - (fly.size * 0.5)) > width) {
     lives = max(0, lives - 1);
+    damageSound.play();
     resetFly();
   }
 }
 
 function resetFly() {
+  flyBuzzSound.stop();
+
   fly.x = random(-100, -30);
   fly.y = random(40, height * 0.55);
   fly.speed = (5 + (score / 20) * 0.8);
@@ -145,11 +179,18 @@ function drawTongue() {
 function updateTongue() {
 
   if (!tongue.isRetracting) {
+    if (!tongueSound.isPlaying()){
+      tongueSound.play();
+      tongueSound.setVolume(2);
+    }
+
     tongue.length += tongue.speed;
     if (tongue.length >= tongue.maxLength) {
         tongue.isRetracting = true;
     }
   } else {
+    tongueSound.stop();
+
     tongue.length -= tongue.speed * 1.2;
     if (tongue.length <= 0) {
       tongue.length = 0;
@@ -202,7 +243,16 @@ function drawStartScreen() {
   );
 }
 
+let playedGameOverSound = false;
+
 function drawGameOverScreen() {
+  if (!playedGameOverSound)
+  {
+    gameOverSound.play();
+    gameOverSound.setVolume(0.7);
+    playedGameOverSound = true;
+  }
+
   noStroke();
   fill(0, 0, 0, 160);
   const w = 520, h = 160;
