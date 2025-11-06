@@ -35,7 +35,8 @@ let fly = {
   x: 0,
   y: 30,
   size: 50,
-  speed: 4
+  speed: 4,
+  isCaught: false
 };
 
 // ===== UI =====
@@ -86,7 +87,7 @@ function draw() {
       swampSound.loop();
       swampSound.setVolume(0.3);
     }
-
+    
     moveFly();
     drawFly();
 
@@ -94,9 +95,10 @@ function draw() {
       updateTongue();
       drawTongue();
     }
-
+    
     moveFrog();
     drawFrog();
+    
     drawHUD();
 
     // Damage overlay
@@ -126,6 +128,8 @@ function drawFly() {
 }
 
 function moveFly() {
+  if (fly.isCaught) return;
+
   if (!flyBuzzSound.isPlaying()) {
     flyBuzzSound.loop();
     flyBuzzSound.setVolume(0.2);
@@ -145,6 +149,7 @@ function moveFly() {
 function resetFly() {
   flyBuzzSound.stop();
 
+  fly.isCaught = false;
   fly.x = random(-100, -30);
   fly.y = random(40, height * 0.55);
   fly.speed = (5 + (score / 20) * 0.8);
@@ -192,10 +197,16 @@ function updateTongue() {
     tongueSound.stop();
 
     tongue.length -= tongue.speed * 1.2;
+
     if (tongue.length <= 0) {
       tongue.length = 0;
       tongue.isActive = false;
       tongue.isRetracting = false;
+
+      if (fly.isCaught) {
+        score += 10;
+        resetFly();
+      }
     }
   }
 
@@ -203,12 +214,18 @@ function updateTongue() {
   const my = frog.y + frog.mouthOffsetY;
   const tipY = my - tongue.length;
 
+  if (fly.isCaught) {
+    fly.x = mx - fly.size * 0.5;
+    fly.y = tipY;
+  }
+
   // Check collision with fly
-  const d = dist(mx, tipY, fly.x, fly.y);
-  if (d < fly.size * 0.6) {
-    score += 10;
-    tongue.isRetracting = true;
-    resetFly();
+  if (!fly.isCaught){
+    const d = dist(mx, tipY, fly.x, fly.y);
+    if (d < fly.size * 0.6) {
+      fly.isCaught = true;
+      tongue.isRetracting = true;
+    }
   }
 }
 
