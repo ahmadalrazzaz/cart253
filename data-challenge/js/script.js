@@ -1,24 +1,57 @@
 /**
- * Title of Project
- * Author Name
- * 
- * HOW EMBARRASSING! I HAVE NO DESCRIPTION OF MY PROJECT!
- * PLEASE REMOVE A GRADE FROM MY WORK IF IT'S GRADED!
+ * Data Challenge
+ * Ahmad AlRazzaz
  */
 
 "use strict";
 
-/**
- * OH LOOK I DIDN'T DESCRIBE SETUP!!
-*/
-function setup() {
+let carData = undefined;
+let dinosaurData = undefined;
 
+let cars = [];
+let dinosaurs = [];
+
+let langData = undefined;
+let lang = "fr";
+
+// Starts with the instruction
+let carName = "Click to generate a car name.";
+
+/**
+ * Load the car and dinosaur data
+ */
+function preload() {
+    carData = loadJSON('/data-challenge/assets/data/cars.json');
+    dinosaurData = loadJSON('/data-challenge/assets/data/dinosaurs.json');
 }
 
+/**
+ * Create the canvas
+*/
+function setup() {
+    createCanvas(600, 400);
+}
 
 /**
- * OOPS I DIDN'T DESCRIBE WHAT MY DRAW DOES!
+ * Display the current main text (either instructions or a car)
 */
 function draw() {
+    background(0);
 
+    push();
+    fill("pink");
+    textAlign(CENTER, CENTER);
+    textSize(32);
+    text(carName, width / 2, height / 2);
+    pop();
+}
+
+/**
+ * Generate a new car name
+ */
+function mousePressed() {
+    let carIndex = floor(random(0, carData.cars.length));
+    let dinosaurIndex = floor(random(0, dinosaurData.dinosaurs.length));
+
+    carName = carData.cars[carIndex] + " " + dinosaurData.dinosaurs[dinosaurIndex];
 }
