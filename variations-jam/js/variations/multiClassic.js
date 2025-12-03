@@ -217,5 +217,8 @@ function drawMultiScores() {
     text(leftScore, width / 4, 20);
     text(rightScore, (width * 3) / 4, 20);
 
+    textSize(12);
+    text("First to " + multiWinScore, width / 2, 20);
+
     pop();
 }
