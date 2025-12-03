@@ -118,14 +118,18 @@ function blackHoleHandlePhysics(ball) {
         ball.velocity.x += (ball.x - paddle.x) * 0.12;
 
         score++;
+
+        playBounceSound();
     }
 
     if (ball.y < ball.height / 2) {
         ball.velocity.y *= -1;
+        playBounceSound();
     }
 
     if (ball.x < ball.width || ball.x > width - ball.width) {
         ball.velocity.x *= -1;
+        playBounceSound();
     }
 
     if (ball.y > height + ball.height / 2) {
@@ -139,6 +143,8 @@ function blackHoleHandlePhysics(ball) {
         fill("white");
         textSize(20);
         text("Final Score: " + score, width / 2, height / 2 + 50);
+
+        playGameOverSound();
 
         noLoop();
     }

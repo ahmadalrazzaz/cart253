@@ -7,10 +7,15 @@
 
 let state = "menu";
 let blockFont;
+let beepSound, glassBreakSound, gameOverSound;
 let menuBg, singleMenu, multiMenu, btnNormal, btnHover;
 
 function preload() {
     blockFont = loadFont("assets/fonts/PressStart2P-Regular.ttf");
+
+    beepSound = loadSound("assets/sounds/pong-beep.mp3");
+    glassBreakSound = loadSound("assets/sounds/glass-break.mp3");
+    gameOverSound = loadSound("assets/sounds/game-over.mp3");
 
     menuBg = loadImage("assets/images/main-menu.jpg");
     singleMenu = loadImage("assets/images/singleplayer.jpg");
@@ -37,10 +42,6 @@ function draw() {
             singleplayerDraw();
             break;
 
-        case "multiPlayer":
-            multiplayerDraw();
-            break;
-
         case "original":
             originalDraw();
             break;
@@ -53,6 +54,14 @@ function draw() {
             break;
         case "blackHole":
             blackHoleDraw();
+            break;
+
+        case "multiPlayer":
+            multiplayerDraw();
+            break;
+
+        case "multiClassic":
+            multiClassicDraw();
             break;
     }
 }
@@ -87,6 +96,10 @@ function mousePressed() {
         case "blackHole":
             blackHoleMousePressed();
             break;
+
+        case "multiClassic":
+            multiClassicMousePressed();
+            break;
     }
 }
 
@@ -119,6 +132,10 @@ function keyPressed() {
             break;
         case "blackHole":
             blackHoleKeyPressed();
+            break;
+
+        case "multiClassic":
+            multiClassicKeyPressed();
             break;
     }
 }

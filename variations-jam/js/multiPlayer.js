@@ -14,7 +14,7 @@ function multiplayerDraw() {
     textFont(blockFont);
     textSize(10);
     textAlign(CENTER, CENTER);
-    text("Click a mode • A/B/C • ESC to go back", width / 2, height - 30);
+    text("Click a mode • A • ESC to go back", width / 2, height - 30);
     pop();
 }
 
@@ -80,10 +80,6 @@ function multiplayerMousePressed() {
 
             if (btn.mode === "multiClassic" && typeof multiClassicSetup === "function") {
                 multiClassicSetup();
-            } else if (btn.mode === "multiChaos" && typeof multiChaosSetup === "function") {
-                multiChaosSetup();
-            } else if (btn.mode === "multiPowerups" && typeof multiPowerupsSetup === "function") {
-                multiPowerupsSetup();
             }
 
             return;
@@ -92,7 +88,6 @@ function multiplayerMousePressed() {
 }
 
 function multiplayerKeyPressed() {
-    // ESC → back to main menu
     if (keyCode === 27) {
         state = "menu";
         return;

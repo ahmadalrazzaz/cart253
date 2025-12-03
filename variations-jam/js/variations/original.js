@@ -84,14 +84,18 @@ function originalHandleBounce(ball) {
         ball.velocity.x += (ball.x - paddle.x) * 0.1;
 
         score++;
+
+        playBounceSound();
     }
 
     if (ball.y < ball.height / 2) {
         ball.velocity.y *= -1;
+        playBounceSound();
     }
 
     if (ball.x < ball.width / 2 || ball.x > width - ball.width / 2) {
         ball.velocity.x *= -1;
+        playBounceSound();
     }
 
     if (ball.y > height + ball.height / 2) {
@@ -107,6 +111,8 @@ function originalHandleBounce(ball) {
         textFont(blockFont);
         textSize(14);
         text("Final Score: " + score, width / 2, height / 2 + 50);
+
+        playGameOverSound();
 
         noLoop();
     }

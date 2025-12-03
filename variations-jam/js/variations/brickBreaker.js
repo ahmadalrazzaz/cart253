@@ -123,14 +123,18 @@ function brickBreakerHandleCollisions(ball) {
 
         ball.velocity.y *= 1.05;
         ball.velocity.x *= 1.05;
+
+        playBounceSound();
     }
 
     if (ball.y < ball.height / 2) {
         ball.velocity.y *= -1;
+        playBounceSound();
     }
 
     if (ball.x < ball.width / 2 || ball.x > width - ball.width / 2) {
         ball.velocity.x *= -1;
+        playBounceSound();
     }
 
     let bricksRemaining = 0;
@@ -145,6 +149,8 @@ function brickBreakerHandleCollisions(ball) {
             ball.velocity.y *= -1;
 
             score += 10;
+
+            playGlassBreakSound();
 
             break;
         }
@@ -177,6 +183,8 @@ function brickBreakerHandleCollisions(ball) {
         fill("white");
         textSize(20);
         text("Final Score: " + score, width / 2, height / 2 + 50);
+
+        playGameOverSound();
 
         noLoop();
     }

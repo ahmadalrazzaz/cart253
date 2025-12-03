@@ -99,3 +99,24 @@ function checkOverlapShared(rectA, rectB) {
         rectA.y - rectA.height / 2 < rectB.y + rectB.height / 2
     );
 }
+
+function playBounceSound() {
+    if (beepSound && beepSound.isLoaded()) {
+        beepSound.setVolume(2);
+        beepSound.play();
+    }
+}
+
+function playGlassBreakSound() {
+    if (glassBreakSound && glassBreakSound.isLoaded()) {
+        glassBreakSound.setVolume(0.7);
+        glassBreakSound.play();
+    }
+}
+
+function playGameOverSound() {
+    if (gameOverSound && gameOverSound.isLoaded()) {
+        gameOverSound.setVolume(0.6);
+        gameOverSound.play();
+    }
+}
