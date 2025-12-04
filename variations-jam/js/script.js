@@ -63,6 +63,10 @@ function draw() {
         case "multiClassic":
             multiClassicDraw();
             break;
+        
+        case "multiBlackHole":
+            multiBlackHoleDraw();
+            break;
     }
 }
 
@@ -100,6 +104,10 @@ function mousePressed() {
         case "multiClassic":
             multiClassicMousePressed();
             break;
+
+        case "multiBlackHole":
+            multiBlackHoleMousePressed();
+            break;
     }
 }
 
@@ -136,6 +144,10 @@ function keyPressed() {
 
         case "multiClassic":
             multiClassicKeyPressed();
+            break;
+
+        case "multiBlackHole":
+            multiBlackHoleKeyPressed();
             break;
     }
 }

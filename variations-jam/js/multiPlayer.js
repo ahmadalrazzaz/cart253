@@ -2,6 +2,8 @@
 
 const multiplayerButtons = [
     { label: "Classic",    mode: "multiClassic",   hotkey: "a" },
+    { label: "Black Hole",    mode: "multiBlackHole",   hotkey: "b" },
+
 ];
 
 function multiplayerDraw() {
@@ -14,7 +16,7 @@ function multiplayerDraw() {
     textFont(blockFont);
     textSize(10);
     textAlign(CENTER, CENTER);
-    text("Click a mode • A • ESC to go back", width / 2, height - 30);
+    text("Click a mode • A/B • ESC to go back", width / 2, height - 30);
     pop();
 }
 
@@ -81,6 +83,9 @@ function multiplayerMousePressed() {
             if (btn.mode === "multiClassic" && typeof multiClassicSetup === "function") {
                 multiClassicSetup();
             }
+            else if (btn.mode === "multiBlackHole" && typeof multiBlackHoleSetup === "function") {
+                multiBlackHoleSetup();
+            }
 
             return;
         }
@@ -102,6 +107,9 @@ function multiplayerKeyPressed() {
             if (btn.mode === "multiClassic" && typeof multiClassicSetup === "function") {
                 multiClassicSetup();
             } 
+            else if (btn.mode === "multiBlackHole" && typeof multiBlackHoleSetup === "function") {
+                multiBlackHoleSetup();
+            }
 
             break;
         }
